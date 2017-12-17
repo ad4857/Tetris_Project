@@ -11,9 +11,25 @@ public class TetrisController {
 
 	public void start() {
 		this.view.initWindow();
-		this.model.setState("developer");
 	}
 	
+	public void getView(String scene) {
+		System.out.println(scene);
+		switch (scene) {
+		case "startup":
+			StartupPanel panel = new StartupPanel(this);
+			this.view.changeView(panel);
+			break;
+		case "game":
+			GamePanel gamePanel = new GamePanel(this);
+			this.view.changeView(gamePanel);
+			break;
+		case "developer":
+			DeveloperPanel developer = new DeveloperPanel(this);
+			this.view.changeView(developer);
+			break;
+		}
+	}
 	public void changeModel(String scene) {
 		
 	}

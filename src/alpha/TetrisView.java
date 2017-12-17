@@ -19,9 +19,11 @@ public class TetrisView extends JFrame implements KeyListener{
 		this.getContentPane().setBackground(Color.green);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.controller.getView("startup");
 	}
 
 	public void changeView(JPanel view) {
+		this.getContentPane().removeAll();
 		this.getContentPane().add(view, BorderLayout.CENTER);
 		this.setVisible(true);
 	}
