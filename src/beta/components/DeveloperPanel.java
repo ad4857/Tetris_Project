@@ -1,5 +1,6 @@
-package alpha;
-
+package beta.components;
+import beta.TetrisView;
+import beta.enums.*;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,7 @@ public class DeveloperPanel extends JPanel {
 	public DeveloperPanel(TetrisView v) {
 		this.view = v;
 		this.setLayout(new GridLayout(2, 1));
-		JLabel RLabel3 = new JLabel("開發者", SwingConstants.CENTER);
+		JLabel RLabel3 = new JLabel("開發者1", SwingConstants.CENTER);
 		RLabel3.setFont(new Font(RLabel3.getFont().getFontName(), Font.PLAIN, 50));
 		JButton backBtn = new JButton("返回遊戲");
 		backBtn.addActionListener(new ActionListener() {

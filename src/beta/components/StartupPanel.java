@@ -1,4 +1,6 @@
-package alpha;
+package beta.components;
+import beta.*;
+import beta.enums.*;
 
 import java.awt.Font;
 import java.awt.GridLayout;

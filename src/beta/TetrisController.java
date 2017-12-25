@@ -1,6 +1,15 @@
-package alpha;
+package beta;
+
+import beta.components.*;
+import beta.enums.*;
 
 public class TetrisController {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TetrisController controller = new TetrisController();	
+		controller.start();
+	}
 	private TetrisModel model;
 	private TetrisView view;
 	private SceneRoute scene;
@@ -35,7 +44,7 @@ public class TetrisController {
 	}
 
 	public SceneRoute getScene() {
-		return this.scene;
+		return scene;
 	}
 
 	public void changeModel(String scene) {

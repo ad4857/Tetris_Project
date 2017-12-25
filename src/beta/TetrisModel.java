@@ -1,12 +1,7 @@
-package alpha;
+package beta;
+import beta.enums.*;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-
-import java.util.Date;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class TetrisModel {
 	private TetrisView view;
@@ -20,12 +15,8 @@ public class TetrisModel {
 		this.state = GameState.Idle;
 	}
 
-	public GameState getState(GameState state) {
-		
+	public GameState getState(GameState state) {	
 		return this.state;
 	}
 
-	public void setCanvas() {
-		
-	}
 }
