@@ -9,7 +9,8 @@ public class TetrisBlock {
 	public Color[][] BlockArr;
 	public int RotateCount = 0;
 	public Color color;
-	public int top = 0, left = 0;
+	public TetrisEngine engine;
+	public int left = 0, top = 0;
 
 	public TetrisBlock(char type, Color c) {
 		setColor(c);
@@ -22,16 +23,17 @@ public class TetrisBlock {
 		setRotate(rotate);
 	}
 
-	public List<Point> getPoint() {
+	public List<Point> getPoints() {
 		List<Point> points = new ArrayList<Point>();
 		for (int i = 0; i < BlockArr.length; i++) {
 			for (int j = 0; j < BlockArr.length; j++) {
 				if (BlockArr[i][j] != null) {
-					points.add(new Point(left + i, top + j));
+					points.add(new Point(j + left, i + top));
 				}
 			}
 		}
 		return points;
+
 	}
 
 	public void setColor(Color c) {

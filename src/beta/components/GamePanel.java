@@ -20,9 +20,10 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel {
 	private TetrisView view;
 	private GameRightPanel rightPanel;
-	// private GamegameArea gameArea;
 	private GameArea gameArea;
 	private GameState NextState;
+	private Timer timer;
+	private TetrisEngine engine;
 
 	public GamePanel(TetrisView v) {
 		this.view = v;
@@ -41,9 +42,22 @@ public class GamePanel extends JPanel {
 		});
 
 		gameArea = new GameArea();
+		engine = new TetrisEngine(20, 16);
+		timer = new Timer(100, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!engine.updateArr()) {
+					gameArea.setArr(engine.SquareArr);
+				} else {
+					timer.stop();
+				}
+			}
+		});
+		timer.setRepeats(true);
+
 		this.add(gameArea);
 		this.add(rightPanel);
-		
+
 		this.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -76,12 +90,12 @@ public class GamePanel extends JPanel {
 		case Playing:
 			this.rightPanel.StateButton.setText("¼È°±");
 			NextState = GameState.Paused;
-			gameArea.start();
+			timer.start();
 			break;
 		case Paused:
 			this.rightPanel.StateButton.setText("Ä~Äò");
 			NextState = GameState.Playing;
-			gameArea.pause();
+			timer.stop();
 			break;
 		}
 	}
