@@ -15,6 +15,7 @@ import java.util.Random;
 import javax.swing.Timer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
@@ -38,23 +39,30 @@ public class GamePanel extends JPanel {
 		rightPanel.StateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateState();
+				requestFocus();
 			}
 		});
-
 		gameArea = new GameArea();
 		engine = new TetrisEngine(20, 16);
-		timer = new Timer(100, new ActionListener() {
+
+		timer = new Timer(500, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!engine.updateArr()) {
 					gameArea.setArr(engine.SquareArr);
 				} else {
+					System.out.println("timer stop");
 					timer.stop();
+					JOptionPane.showMessageDialog(null, "遊戲結束");
+					NextState = GameState.Idle;
+					updateState();
 				}
+				rightPanel.ScoreLabel.setText("分數:" + engine.score);
 			}
 		});
-		timer.setRepeats(true);
 
+		timer.setRepeats(true);
+		gameArea.setFocusable(false);
 		this.add(gameArea);
 		this.add(rightPanel);
 
@@ -63,12 +71,28 @@ public class GamePanel extends JPanel {
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
 				System.out.println("Typed:" + e.getKeyCode());
+
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				System.out.println("Pressed:" + e.getKeyCode());
+				switch (e.getKeyCode()) {
+				case 38:
+					engine.move(0);
+					break;
+				case 37:
+					engine.move(1);
+					break;
+				case 39:
+					engine.move(2);
+					break;
+				case 40:
+					engine.move(3);
+					break;
+				}
+				gameArea.setArr(engine.SquareArr);
 			}
 
 			@Override
@@ -77,7 +101,6 @@ public class GamePanel extends JPanel {
 				System.out.println("Released:" + e.getKeyCode());
 			}
 		});
-
 	}
 
 	public void updateState() {
@@ -86,8 +109,10 @@ public class GamePanel extends JPanel {
 		case Idle:
 			this.rightPanel.StateButton.setText("開始");
 			NextState = GameState.Playing;
+			engine = new TetrisEngine(20, 16);
 			break;
 		case Playing:
+
 			this.rightPanel.StateButton.setText("暫停");
 			NextState = GameState.Paused;
 			timer.start();

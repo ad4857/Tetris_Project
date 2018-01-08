@@ -85,7 +85,7 @@ public class TetrisBlock {
 			BlockArr[1][2] = color;
 			break;
 		case 'T':
-			BlockArr = new Color[4][4];
+			BlockArr = new Color[3][3];
 			BlockArr[0][1] = color;
 			BlockArr[1][0] = color;
 			BlockArr[1][1] = color;
