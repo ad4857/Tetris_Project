@@ -1,5 +1,5 @@
 package beta.enums;
 
 public enum Command {
-	EnterStartup, EnterGame, StartGame, PauseGame, StopGame
+	EnterStartup, EnterGame, StartGame, PauseGame, StopGame, EnterDeveloper, ExitDeveloper
 }

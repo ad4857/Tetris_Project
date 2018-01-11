@@ -44,6 +44,7 @@ public class TetrisView extends JFrame implements KeyListener {
 				StartupPanel.enterButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						controller.userHasInput(Command.EnterGame);
+						requestFocus();
 					}
 				});
 				this.changeView(StartupPanel);
@@ -71,6 +72,12 @@ public class TetrisView extends JFrame implements KeyListener {
 						requestFocus();
 					}
 				});
+				GamePanel.developerButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						controller.userHasInput(Command.EnterDeveloper);
+						requestFocus();
+					}
+				});
 				this.changeView(GamePanel);
 				GamePanel.gameArea.setArr(m.getArr());
 				GamePanel.nowScore.setText("目前分數:" + model.getScore("normal"));
@@ -95,7 +102,17 @@ public class TetrisView extends JFrame implements KeyListener {
 				P3.stopButton.setEnabled(false);
 				break;
 			case Gameover:
-                JOptionPane.showMessageDialog(null, "遊戲結束");            
+				JOptionPane.showMessageDialog(null, "遊戲結束");
+				break;
+			case ViewDeveloper:
+				DeveloperPanel DeveloperPanel = new DeveloperPanel();
+				DeveloperPanel.exitButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						controller.userHasInput(Command.ExitDeveloper);
+						requestFocus();
+					}
+				});
+				this.changeView(DeveloperPanel);
 				break;
 			}
 		}

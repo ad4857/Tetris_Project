@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements KeyListener {
 	public GameArea gameArea;
 	public JLabel nowScore, maxScore;
-	public JButton startButton, pauseButton, stopButton, leaderboardButton;
+	public JButton startButton, pauseButton, stopButton, developerButton;
 	public GameState state;
 
 	public GamePanel() {
@@ -53,8 +53,8 @@ public class GamePanel extends JPanel implements KeyListener {
 
 		JPanel OtherPanel = new JPanel();
 		OtherPanel.setLayout(new GridLayout(1, 1));
-		leaderboardButton = new JButton("排行榜");
-		OtherPanel.add(leaderboardButton);
+		developerButton = new JButton("開發者");
+		OtherPanel.add(developerButton);
 		RightPanel.add(OtherPanel);
 
 		this.add(gameArea);

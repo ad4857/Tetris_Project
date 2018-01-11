@@ -6,5 +6,6 @@ public enum GameState {
 	Playing,
 	Paused,
 	Stop,
-	Gameover
+	Gameover,
+	ViewDeveloper
 }

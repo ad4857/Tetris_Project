@@ -42,6 +42,7 @@ public class TetrisEngine {
 			fallBlock.left = (col - fallBlock.BlockArr.length) / 2;
 			if (checkCollision()) {
 				System.out.println("finish!!");
+				fallBlock = null;
 				return true;
 			} else {
 				for (Point p : fallBlock.getPoints()) {

@@ -43,6 +43,12 @@ public class TetrisController {
 		case StopGame:
 			this.model.setState(GameState.Stop);
 			break;
+		case EnterDeveloper:
+			this.model.setState(GameState.ViewDeveloper);
+			break;
+		case ExitDeveloper:
+			this.model.setState(GameState.Idle);
+			break;
 		}
 	}
 

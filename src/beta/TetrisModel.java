@@ -89,6 +89,11 @@ public class TetrisModel {
 				}
 			});
 			timer.setRepeats(true);
+			break;
+		case ViewDeveloper:
+			timer.stop();
+			this.view.stateHasChanged(this, this.state);
+			return;
 		}
 		this.view.stateHasChanged(this, this.state);
 

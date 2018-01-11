@@ -33,7 +33,6 @@ public class TetrisBlock {
 			}
 		}
 		return points;
-
 	}
 
 	public void setColor(Color c) {
