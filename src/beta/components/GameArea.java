@@ -17,6 +17,10 @@ import javax.swing.Timer;
 import beta.TetrisView;
 
 public class GameArea extends JPanel {
+	
+	public GameArea() {
+		
+	}
 	private Color[][] SquareArr;
 
 	public void setArr(Color[][] arr) {

@@ -1,5 +1,7 @@
 package beta;
 
+import java.awt.event.KeyEvent;
+
 import beta.components.*;
 import beta.enums.*;
 
@@ -7,12 +9,12 @@ public class TetrisController {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		TetrisController controller = new TetrisController();	
+		TetrisController controller = new TetrisController();
 		controller.start();
 	}
+
 	private TetrisModel model;
 	private TetrisView view;
-	private SceneRoute scene;
 
 	public TetrisController() {
 		this.view = new TetrisView(this);
@@ -21,37 +23,31 @@ public class TetrisController {
 
 	public void start() {
 		this.view.initWindow();
-		this.getView(SceneRoute.Startup);
+		this.view.stateHasChanged(null, GameState.ViewStartup);
 	}
 
-	public void getView(SceneRoute scene) {
-		System.out.println(scene);
-		this.scene = scene;
-		switch (scene) {
-		case Startup:
-			StartupPanel panel = new StartupPanel(this.view);
-			this.view.changeView(panel);
+	public void userHasInput(Command command) {
+		switch (command) {
+		case EnterStartup:
+			this.model.setState(GameState.ViewStartup);
 			break;
-		case Game:
-			GamePanel gamePanel = new GamePanel(this.view);
-			this.view.changeView(gamePanel);
+		case EnterGame:
+			this.model.setState(GameState.Idle);
 			break;
-		case Developer:
-			DeveloperPanel developer = new DeveloperPanel(this.view);
-			this.view.changeView(developer);
+		case StartGame:
+			this.model.setState(GameState.Playing);
+			break;
+		case PauseGame:
+			this.model.setState(GameState.Paused);
+			break;
+		case StopGame:
+			this.model.setState(GameState.Stop);
 			break;
 		}
 	}
 
-	public SceneRoute getScene() {
-		return scene;
+	public void keyboardInput(KeyEvent e) {
+		model.setAction(e);
 	}
-
-	public void changeModel(String scene) {
-
-	}
-
-	public void updateState(int state) {
-
-	}
+	
 }

@@ -1,7 +1,10 @@
 package beta.enums;
 
 public enum GameState {
+	ViewStartup,
 	Idle,
 	Playing,
-	Paused
+	Paused,
+	Stop,
+	Gameover
 }

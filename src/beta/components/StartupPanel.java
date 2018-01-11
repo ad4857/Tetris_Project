@@ -1,4 +1,5 @@
 package beta.components;
+
 import beta.*;
 import beta.enums.*;
 
@@ -16,27 +17,21 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class StartupPanel extends JPanel {
-	private TetrisView view;
+	public JButton enterButton;
+	public JLabel title;
+	public JTextArea description;
 
-	public StartupPanel(TetrisView v) {
-		this.view = v;
-		JButton button = new JButton("進入遊戲");
-		JLabel label = new JLabel("俄羅斯方塊", SwingConstants.CENTER);
-		JTextArea textarea = new JTextArea("操作說明");
-		label.setFont(new Font(label.getFont().getFontName(), Font.PLAIN, 50));
-		textarea.setEditable(false);
-		textarea.setFont(new Font(label.getFont().getFontName(), Font.PLAIN, 30));
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// controller.ChangeView(ViewsEnum.gameView);
-				System.out.println("change");
-				view.changeScene(SceneRoute.Game);
-			}
-		});
+	public StartupPanel() {
+		enterButton = new JButton("進入遊戲");
+		title = new JLabel("俄羅斯方塊", SwingConstants.CENTER);
+		description = new JTextArea("操作說明");
+		title.setFont(new Font(title.getFont().getFontName(), Font.PLAIN, 50));
+		description.setEditable(false);
+		description.setFont(new Font(description.getFont().getFontName(), Font.PLAIN, 30));
 		this.setLayout(new GridLayout(3, 1));
-		this.add(label);
-		this.add(textarea);
-		this.add(button);
+		this.add(title);
+		this.add(description);
+		this.add(enterButton);
 		this.setBorder(BorderFactory.createEtchedBorder());
 	}
 
