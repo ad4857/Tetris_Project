@@ -22,7 +22,6 @@ public class TetrisEngine {
 		blocks = new ArrayList<TetrisBlock>();
 	}
 
-	
 	public boolean updateArr() {
 		if (fallBlock != null) {
 			if (move(3)) {
@@ -51,6 +50,58 @@ public class TetrisEngine {
 			}
 		}
 		return false;
+	}
+
+	public boolean move(int d) {
+		if (fallBlock != null) {
+			for (Point p : fallBlock.getPoints()) {
+				SquareArr[p.y][p.x] = null;
+			}
+			boolean flag = true;
+			switch (d) {
+			case -1:// put
+				while (!checkCollision()) {
+					fallBlock.top++;
+				}
+				fallBlock.top--;
+				flag = false;
+				break;
+			case 0:// rotate
+				fallBlock.rotate(true);
+				if (checkCollision()) {
+					fallBlock.rotate(false);
+					flag = false;
+				}
+				break;
+			case 1:// left
+				fallBlock.left--;
+				if (checkCollision()) {
+					fallBlock.left++;
+					flag = false;
+				}
+				break;
+			case 2:// right
+				fallBlock.left++;
+				if (checkCollision()) {
+					fallBlock.left--;
+					flag = false;
+				}
+				break;
+			case 3:// down
+				fallBlock.top++;
+				if (checkCollision()) {
+					fallBlock.top--;
+					flag = false;
+				}
+				break;
+			}
+			for (Point p : fallBlock.getPoints()) {
+				SquareArr[p.y][p.x] = fallBlock.color;
+			}
+			return flag;
+		}
+		return false;
+
 	}
 
 	private char randomShape() {
@@ -137,50 +188,4 @@ public class TetrisEngine {
 		score += clearRows * 100;
 	}
 
-	public boolean move(int d) {
-		if (fallBlock != null) {
-			for (Point p : fallBlock.getPoints()) {
-				SquareArr[p.y][p.x] = null;
-			}
-			boolean flag = true;
-			switch (d) {
-			case -1:// put
-				break;
-			case 0:// rotate
-				fallBlock.rotate(true);
-				if (checkCollision()) {
-					fallBlock.rotate(false);
-					flag = false;
-				}
-				break;
-			case 1:// left
-				fallBlock.left--;
-				if (checkCollision()) {
-					fallBlock.left++;
-					flag = false;
-				}
-				break;
-			case 2:// right
-				fallBlock.left++;
-				if (checkCollision()) {
-					fallBlock.left--;
-					flag = false;
-				}
-				break;
-			case 3:// down
-				fallBlock.top++;
-				if (checkCollision()) {
-					fallBlock.top--;
-					flag = false;
-				}
-				break;
-			}
-			for (Point p : fallBlock.getPoints()) {
-				SquareArr[p.y][p.x] = fallBlock.color;
-			}
-			return flag;
-		}
-		return false;
-
-	}
 }

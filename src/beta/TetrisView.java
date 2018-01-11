@@ -18,10 +18,6 @@ public class TetrisView extends JFrame {
 		this.controller = c;
 	}
 
-	public void hasInput() {
-		
-	}
-	
 	public void initWindow() {
 		this.setTitle("Tetris");
 		this.setSize(800, 600);

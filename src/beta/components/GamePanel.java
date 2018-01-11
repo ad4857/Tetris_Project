@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements KeyListener {
 	private TetrisView view;
 	private GameRightPanel rightPanel;
 	private GameArea gameArea;
@@ -65,42 +65,7 @@ public class GamePanel extends JPanel {
 		gameArea.setFocusable(false);
 		this.add(gameArea);
 		this.add(rightPanel);
-
-		this.addKeyListener(new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("Typed:" + e.getKeyCode());
-
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("Pressed:" + e.getKeyCode());
-				switch (e.getKeyCode()) {
-				case 38:
-					engine.move(0);
-					break;
-				case 37:
-					engine.move(1);
-					break;
-				case 39:
-					engine.move(2);
-					break;
-				case 40:
-					engine.move(3);
-					break;
-				}
-				gameArea.setArr(engine.SquareArr);
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("Released:" + e.getKeyCode());
-			}
-		});
+		this.addKeyListener(this);
 	}
 
 	public void updateState() {
@@ -123,5 +88,41 @@ public class GamePanel extends JPanel {
 			timer.stop();
 			break;
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("Pressed:" + e.getKeyCode() + ":" + e.getKeyChar());
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_SPACE:
+			engine.move(-1);
+			break;
+		case KeyEvent.VK_UP:
+			engine.move(0);
+			break;
+		case KeyEvent.VK_LEFT:
+			engine.move(1);
+			break;
+		case KeyEvent.VK_RIGHT:
+			engine.move(2);
+			break;
+		case KeyEvent.VK_DOWN:
+			engine.move(3);
+			break;
+		}
+		gameArea.setArr(engine.SquareArr);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }
